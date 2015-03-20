@@ -20,7 +20,7 @@ public class KioskWindow extends Observable implements Runnable {
 	public void run() {
 		while(!kiosk.isFinished()) {
 			PassengerGroup pg = pgq.getPassengerGroup();
-			Taxi t = tq.getTaxi();
+			Taxi_old t = tq.getTaxi();
 		}
 	}
 
