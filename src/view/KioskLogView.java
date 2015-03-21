@@ -3,9 +3,12 @@ package view;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.EtchedBorder;
 
 @SuppressWarnings("serial")
 public class KioskLogView extends JPanel implements Observer{
@@ -15,8 +18,24 @@ public class KioskLogView extends JPanel implements Observer{
 	
 	public KioskLogView(){
 		
-		add("title", title);
-		add("Log", tx);
+		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+		GroupLayout layout = new GroupLayout(this);
+		this.setLayout(layout);
+		layout.setAutoCreateGaps(true);
+		layout.setAutoCreateContainerGaps(true);
+		layout.setHorizontalGroup(
+				layout.createSequentialGroup()
+				.addGroup(
+						layout.createParallelGroup()
+						.addComponent(this.title)
+						.addComponent(this.tx)
+						)
+		);
+		layout.setVerticalGroup(
+				layout.createSequentialGroup()
+				.addComponent(this.title)
+				.addComponent(this.tx)
+		);
 		
 	}
 
@@ -41,7 +60,5 @@ public class KioskLogView extends JPanel implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 
 }

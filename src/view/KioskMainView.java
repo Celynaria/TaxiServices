@@ -1,10 +1,9 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
-import java.util.Observable;
-import java.util.Observer;
-
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,27 +13,42 @@ public class KioskMainView extends JFrame{
 	public KioskMainView (){
 		
 		setTitle("Kiosk Taxi");
+		//create 3 windows
 		KioskWindowView window1 = new KioskWindowView();
 		KioskWindowView window2 = new KioskWindowView();
 		KioskWindowView window3 = new KioskWindowView();
+		//create taxi view and set text to button and header
 		KioskListView taxiQueue = new KioskListView();
 		taxiQueue.setTitleLabel("Taxi Queue");
 		taxiQueue.setButtonLabel("Add Taxi");
-		KioskLogView log = new KioskLogView();
+		//create passenger view and set text to button
 		KioskListView passengerQueue = new KioskListView();
+		passengerQueue.setTitleLabel("Passenger Queue");
 		passengerQueue.setButtonLabel("Add Passenger");
+		//create log view
+		KioskLogView log = new KioskLogView();
 		
+		//create north panel
 		JPanel northPanel = new JPanel();
 		northPanel.add(window1);
 		northPanel.add(window2);
 		northPanel.add(window3);
+		northPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		//create centre panel
 		JPanel centerPanel = new JPanel();
 		centerPanel.add(passengerQueue);
 		centerPanel.add(taxiQueue);
+		centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		//create south panel
+		JPanel southPanel = new JPanel();
+		southPanel.add(log);
+		southPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		
 		Container contentPane = getContentPane();
-		contentPane.add(northPanel, BorderLayout.NORTH);
+		contentPane.setLayout(new BorderLayout(3,3));
+		contentPane.add(northPanel,BorderLayout.NORTH);
 		contentPane.add(centerPanel,BorderLayout.CENTER);
-		contentPane.add(log, BorderLayout.SOUTH);
+		contentPane.add(southPanel,BorderLayout.SOUTH);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();

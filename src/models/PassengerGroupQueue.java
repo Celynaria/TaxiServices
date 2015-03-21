@@ -1,9 +1,12 @@
 package models;
 
 import java.util.LinkedList;
+import java.util.Observable;
 import java.util.Queue;
 
-public class PassengerGroupQueue {
+import entities.PassengerGroup;
+
+public class PassengerGroupQueue extends Observable{
 	
 	private Queue<PassengerGroup> cList = new LinkedList<PassengerGroup>();
 	private static final PassengerGroupQueue INSTANCE = new PassengerGroupQueue();
@@ -34,10 +37,6 @@ public class PassengerGroupQueue {
 	
 	public PassengerGroup getPassengerGroup() {
 		return cList.poll();
-	}
-	
-	public boolean loadData(){
-		return true;
 	}
 
 }

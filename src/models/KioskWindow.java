@@ -2,26 +2,19 @@ package models;
 
 import java.util.Observable;
 
-import main.Kiosk;
+import entities.PassengerGroup;
 
 public class KioskWindow extends Observable implements Runnable {
 	
-	private PassengerGroupQueue pgq;
-	private TaxiQueue tq;
-	private Kiosk kiosk;
+	private PassengerGroupQueue pgq = PassengerGroupQueue.getInstance();
+	private TaxiQueue tq = TaxiQueue.getInstance();
 	
-	public KioskWindow(Kiosk k) {
-		pgq = PassengerGroupQueue.getInstance();
-		tq = TaxiQueue.getInstance();
-		kiosk = k;
-	}
+	public KioskWindow() {}
 
 	@Override
 	public void run() {
-		while(!kiosk.isFinished()) {
-			PassengerGroup pg = pgq.getPassengerGroup();
-			//Taxi t = tq.getTaxi();
-		}
+		PassengerGroup pg = pgq.getPassengerGroup();
+		//Taxi t = tq.getTaxi();
 	}
 
 }

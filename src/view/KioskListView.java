@@ -3,11 +3,13 @@ package view;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.EtchedBorder;
 
 /**
  * This view control layout of the list remaining passenger groups and taxis.
@@ -27,32 +29,33 @@ public class KioskListView extends JPanel implements Observer{
 	 */
 	public KioskListView(){
 		
+		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		GroupLayout layout = new GroupLayout(this);
 		this.setLayout(layout);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		layout.setHorizontalGroup(
-				layout.createSequentialGroup()
-				.addGroup(
-						layout.createParallelGroup()
-						.addGroup(
-								layout.createSequentialGroup()
-								.addComponent(title)
-								.addComponent(number)
-						)
-						.addComponent(scrollPane)
-						.addComponent(process, GroupLayout.Alignment.CENTER)
-				)
+			layout.createSequentialGroup()
+			.addGroup(
+					layout.createParallelGroup()
+					.addGroup(
+							layout.createSequentialGroup()
+							.addComponent(title)
+							.addComponent(number)
+					)
+					.addComponent(scrollPane)
+					.addComponent(process, GroupLayout.Alignment.CENTER)
+			)
 		);
 		layout.setVerticalGroup(
-				layout.createSequentialGroup()
-				.addGroup(
-						layout.createParallelGroup()
-						.addComponent(title)
-						.addComponent(number)
-				)
-				.addComponent(scrollPane)
-				.addComponent(process)	
+			layout.createSequentialGroup()
+			.addGroup(
+					layout.createParallelGroup()
+					.addComponent(title)
+					.addComponent(number)
+			)
+			.addComponent(scrollPane)
+			.addComponent(process)	
 		);
 	}
 	

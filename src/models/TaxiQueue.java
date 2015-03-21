@@ -1,9 +1,12 @@
 package models;
 
 import java.util.LinkedList;
+import java.util.Observable;
 import java.util.Queue;
 
-public class TaxiQueue {
+import entities.Taxi;
+
+public class TaxiQueue extends Observable{
 	
 	private Queue<Taxi> tList = new LinkedList<Taxi>();
 	private static final TaxiQueue INSTANCE = new TaxiQueue();
@@ -32,11 +35,4 @@ public class TaxiQueue {
 		return tList.poll();
 	}
 	
-	public boolean loadData(){
-		for(int i=0;i<10;i++ ){
-			this.addTaxi(new Taxi());
-		}
-		return true;
-	}
-
 }
