@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,30 +13,33 @@ public class KioskMainView extends JFrame{
 	
 	public KioskMainView (){
 		
-		setTitle("Taxi Kiosk");
-		KioskListView j3 = new KioskListView();
-		j3.setTitleLabel("TAXI GROUP");
-		j3.setNumberLabel(3);
-		j3.setButtonLabel("Taxi");
-		KioskLogView j2 = new KioskLogView();
-		j2.getTx().setText("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-		KioskListView j1 = new KioskListView();
-		j1.setTitleLabel("PASSENGER GROUP");
-		j1.setNumberLabel(3);
-		j1.setButtonLabel("Queue");
+		setTitle("Kiosk Taxi");
+		KioskWindowView window1 = new KioskWindowView();
+		KioskWindowView window2 = new KioskWindowView();
+		KioskWindowView window3 = new KioskWindowView();
+		KioskListView taxiQueue = new KioskListView();
+		taxiQueue.setTitleLabel("Taxi Queue");
+		taxiQueue.setButtonLabel("Add Taxi");
+		KioskLogView log = new KioskLogView();
+		KioskListView passengerQueue = new KioskListView();
+		passengerQueue.setButtonLabel("Add Passenger");
+		
+		JPanel northPanel = new JPanel();
+		northPanel.add(window1);
+		northPanel.add(window2);
+		northPanel.add(window3);
+		JPanel centerPanel = new JPanel();
+		centerPanel.add(passengerQueue);
+		centerPanel.add(taxiQueue);
+		Container contentPane = getContentPane();
+		contentPane.add(northPanel, BorderLayout.NORTH);
+		contentPane.add(centerPanel,BorderLayout.CENTER);
+		contentPane.add(log, BorderLayout.SOUTH);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(500, 800);
-		JPanel j = new JPanel();
-		j.add(j1);
-		j.add(j3);
-		Container contentPane = getContentPane();
-		contentPane.add(j,BorderLayout.NORTH);
-		contentPane.add(j2, BorderLayout.SOUTH);
 		pack();
 		setVisible(true);
 		
 	}
-	
- 
+
 }

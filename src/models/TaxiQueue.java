@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class TaxiQueue {
 	
-	private Queue<Taxi_old> tList = new LinkedList<Taxi_old>();
+	private Queue<Taxi> tList = new LinkedList<Taxi>();
 	private static final TaxiQueue INSTANCE = new TaxiQueue();
 	
 	private TaxiQueue() {}
@@ -14,7 +14,7 @@ public class TaxiQueue {
 		return INSTANCE;
 	}
 	
-	public void addTaxi(Taxi_old t) {
+	public void addTaxi(Taxi t) {
 		while(true) {
 			try {
 				tList.add(t);
@@ -28,13 +28,13 @@ public class TaxiQueue {
 		}
 	}
 	
-	public Taxi_old getTaxi() {
+	public Taxi getTaxi() {
 		return tList.poll();
 	}
 	
 	public boolean loadData(){
 		for(int i=0;i<10;i++ ){
-			this.addTaxi(new Taxi_old());
+			this.addTaxi(new Taxi());
 		}
 		return true;
 	}

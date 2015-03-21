@@ -77,7 +77,7 @@ public class KioskListView extends JPanel implements Observer{
 	 * @param name
 	 */
 	public void setButtonLabel(String name){
-		this.process.setText("Add "+name);
+		this.process.setText(name);
 	}
 
 	@Override
