@@ -1,5 +1,4 @@
 package view;
-
 import java.util.Observable;
 import java.util.Observer;
 
@@ -16,9 +15,11 @@ public class KioskWindowView extends JPanel implements Observer{
 	private JLabel destination = new JLabel();
 	private JLabel passengers = new JLabel();
 	private JLabel taxi = new JLabel();
+	private JLabel header = new JLabel();
 	
-	public KioskWindowView() {
-		JLabel j1 = new JLabel("WINDOW");
+	public KioskWindowView(String title) {
+		
+		this.header.setText(title);
 		JLabel j2 = new JLabel("Destination   :");
 		JLabel j3 = new JLabel("Passengers :");
 		JLabel j4 = new JLabel("Taxi                :");
@@ -32,10 +33,10 @@ public class KioskWindowView extends JPanel implements Observer{
 				layout.createSequentialGroup()
 				.addGroup(
 						layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-							.addComponent(j1)
-							.addComponent(j2)
-							.addComponent(j3)
-							.addComponent(j4)
+							.addComponent(this.header)
+							.addComponent(j2,GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+							.addComponent(j3,GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+							.addComponent(j4,GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
 						)
 				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 							.addComponent(this.windowStatus)
@@ -48,7 +49,7 @@ public class KioskWindowView extends JPanel implements Observer{
 				layout.createSequentialGroup()
 				.addGroup(
 						layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-							.addComponent(j1)
+							.addComponent(this.header)
 							.addComponent(this.windowStatus)
 						)
 				.addGroup(
@@ -105,6 +106,14 @@ public class KioskWindowView extends JPanel implements Observer{
 
 	public void setTaxi(JLabel taxi) {
 		this.taxi = taxi;
+	}
+
+	public JLabel getHeader() {
+		return header;
+	}
+
+	public void setHeader(JLabel header) {
+		this.header = header;
 	}
 
 }

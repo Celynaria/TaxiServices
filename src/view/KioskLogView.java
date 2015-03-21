@@ -7,17 +7,22 @@ import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 @SuppressWarnings("serial")
 public class KioskLogView extends JPanel implements Observer{
 	
-	private JTextArea tx = new JTextArea();
+	private JTextArea tx = new JTextArea(10,95);
 	private JLabel title = new JLabel("Log Area");
 	
 	public KioskLogView(){
 		
+		JScrollPane scrollPane = new JScrollPane(this.tx,
+	            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+	            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.tx.setEditable(false);
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		GroupLayout layout = new GroupLayout(this);
 		this.setLayout(layout);
@@ -28,13 +33,13 @@ public class KioskLogView extends JPanel implements Observer{
 				.addGroup(
 						layout.createParallelGroup()
 						.addComponent(this.title)
-						.addComponent(this.tx)
+						.addComponent(scrollPane)
 						)
 		);
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
 				.addComponent(this.title)
-				.addComponent(this.tx)
+				.addComponent(scrollPane)
 		);
 		
 	}

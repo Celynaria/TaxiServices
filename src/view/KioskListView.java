@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
 /**
@@ -22,7 +23,7 @@ public class KioskListView extends JPanel implements Observer{
 	private	JLabel title = new JLabel();
 	private	JLabel number = new JLabel();
 	private	JButton process = new JButton();
-	private JScrollPane scrollPane = new JScrollPane();
+	private JTable table = new JTable(0,1);
 	
 	/**
 	 * For construct the layout of this view.
@@ -30,6 +31,9 @@ public class KioskListView extends JPanel implements Observer{
 	public KioskListView(){
 		
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+		JScrollPane scrollPane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+	    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		table.setTableHeader(null);
 		GroupLayout layout = new GroupLayout(this);
 		this.setLayout(layout);
 		layout.setAutoCreateGaps(true);
@@ -43,7 +47,7 @@ public class KioskListView extends JPanel implements Observer{
 							.addComponent(title)
 							.addComponent(number)
 					)
-					.addComponent(scrollPane)
+					.addComponent(scrollPane,400,400,400)
 					.addComponent(process, GroupLayout.Alignment.CENTER)
 			)
 		);
@@ -54,7 +58,7 @@ public class KioskListView extends JPanel implements Observer{
 					.addComponent(title)
 					.addComponent(number)
 			)
-			.addComponent(scrollPane)
+			.addComponent(scrollPane,125,125,125)
 			.addComponent(process)	
 		);
 	}
@@ -82,10 +86,15 @@ public class KioskListView extends JPanel implements Observer{
 	public void setButtonLabel(String name){
 		this.process.setText(name);
 	}
+	
+	public void addRow(){
+		
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		
 	}
 
 }

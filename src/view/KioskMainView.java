@@ -14,9 +14,9 @@ public class KioskMainView extends JFrame{
 		
 		setTitle("Kiosk Taxi");
 		//create 3 windows
-		KioskWindowView window1 = new KioskWindowView();
-		KioskWindowView window2 = new KioskWindowView();
-		KioskWindowView window3 = new KioskWindowView();
+		KioskWindowView window1 = new KioskWindowView("WINDOW 1");
+		KioskWindowView window2 = new KioskWindowView("WINDOW 2");
+		KioskWindowView window3 = new KioskWindowView("WINDOW 3");
 		//create taxi view and set text to button and header
 		KioskListView taxiQueue = new KioskListView();
 		taxiQueue.setTitleLabel("Taxi Queue");

@@ -38,7 +38,7 @@ public class Taxi {
 		this.lastName = lastName;
 		Random ran = new Random();
 		int x = ran.nextInt(6) + 3;
-		this.maximumPassenger = x;
+		this.setMaximumPassenger(x);
 	}
 	public Taxi(){}
 	public String getRegistrationID() {
@@ -58,6 +58,12 @@ public class Taxi {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public int getMaximumPassenger() {
+		return maximumPassenger;
+	}
+	public void setMaximumPassenger(int maximumPassenger) {
+		this.maximumPassenger = maximumPassenger;
 	}
 	
 	/**
@@ -100,4 +106,5 @@ public class Taxi {
 			throw new InvalidRegistrationFormatException("RegistrationID must start with \"BKK\" and follow by 2 capital chacraters and end with 3 digits number.");
 		}
 	}
+	
 }
