@@ -3,31 +3,48 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.Kiosk;
+
 @SuppressWarnings("serial")
 public class KioskMainView extends JFrame{
 	
-	public KioskMainView (){
-		
+	public KioskMainView (Kiosk kios){
 		setResizable(false);
 		setTitle("Kiosk Taxi");
 		//create 3 windows
 		KioskWindowView window1 = new KioskWindowView("WINDOW 1");
 		KioskWindowView window2 = new KioskWindowView("WINDOW 2");
 		KioskWindowView window3 = new KioskWindowView("WINDOW 3");
+		
 		//create taxi view and set text to button and header
 		KioskListView taxiQueue = new KioskListView();
 		taxiQueue.setTitleLabel("Taxi Queue");
 		taxiQueue.setButtonLabel("Add Taxi");
+		taxiQueue.addTableColumnHeader("TaxiID");
+		taxiQueue.addTableColumnHeader("Capacity");
+		
 		//create passenger view and set text to button
 		KioskListView passengerQueue = new KioskListView();
 		passengerQueue.setTitleLabel("Passenger Queue");
 		passengerQueue.setButtonLabel("Add Passenger");
+		passengerQueue.addTableColumnHeader("Destination");
+		passengerQueue.addTableColumnHeader("Passengers");
+		
 		//create log view
 		KioskLogView log = new KioskLogView();
+		
+		//add list of component to main controller
+		kios.getComponentList().put("window1", window1);
+		kios.getComponentList().put("window2", window2);
+		kios.getComponentList().put("window3", window3);
+		kios.getComponentList().put("taxiQueue", taxiQueue);
+		kios.getComponentList().put("passengerQueue", passengerQueue);
+		kios.getComponentList().put("log", log);
 		
 		//create north panel
 		JPanel northPanel = new JPanel();

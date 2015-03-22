@@ -1,14 +1,14 @@
 package models;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Observable;
+import java.util.Vector;
 
 import entities.Taxi;
 
 public class TaxiQueue extends Observable{
-	
-	private LinkedList<Taxi> taxiList = new LinkedList<Taxi>();
+	//Vector is synchronised data structure so only one thread can update vector at the time
+	private Vector<Taxi> taxiList = new Vector<Taxi>();
 	private static final TaxiQueue INSTANCE = new TaxiQueue();
 	
 	private TaxiQueue() {}
@@ -17,7 +17,7 @@ public class TaxiQueue extends Observable{
 		return INSTANCE;
 	}
 
-	public LinkedList<Taxi> getTaxiList() {
+	public Vector<Taxi> getTaxiList() {
 		return taxiList;
 	}
 	/**
@@ -27,6 +27,8 @@ public class TaxiQueue extends Observable{
 	 */
 	public void setTaxiList(Collection<Taxi> tList) {
 		this.taxiList.addAll(tList);
+		setChanged();
+		notifyObservers(2);
 	}
 	
 }

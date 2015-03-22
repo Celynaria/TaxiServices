@@ -1,5 +1,6 @@
 package view;
 
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,6 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
+
+import entities.PassengerGroup;
+import entities.Taxi;
+import models.PassengerGroupQueue;
+import models.TaxiQueue;
 
 /**
  * This view control layout of the list remaining passenger groups and taxis.
@@ -23,7 +30,7 @@ public class KioskListView extends JPanel implements Observer{
 	private	JLabel title = new JLabel();
 	private	JLabel number = new JLabel();
 	private	JButton process = new JButton();
-	private JTable table = new JTable(0,1);
+	private JTable table = new JTable(new DefaultTableModel(0,0));
 	
 	/**
 	 * For construct the layout of this view.
@@ -33,7 +40,6 @@ public class KioskListView extends JPanel implements Observer{
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		JScrollPane scrollPane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 	    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		table.setTableHeader(null);
 		GroupLayout layout = new GroupLayout(this);
 		this.setLayout(layout);
 		layout.setAutoCreateGaps(true);
@@ -94,6 +100,29 @@ public class KioskListView extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		if((int)arg == 1){
+			DefaultTableModel model = (DefaultTableModel)table.getModel();
+			Iterator<PassengerGroup> i = PassengerGroupQueue.getInstance().getPassengerGroup().iterator();
+			while(i.hasNext()){
+				PassengerGroup pg = i.next();
+				Object[] data = {pg.getDestination(),pg.getPassengers()};
+				model.addRow(data);
+			}
+		}else if((int)arg == 2){
+			DefaultTableModel model = (DefaultTableModel)table.getModel();
+			Iterator<Taxi> i = TaxiQueue.getInstance().getTaxiList().iterator();
+			while(i.hasNext()){
+				Taxi tx = i.next();
+				Object[] data = {tx.getRegistrationID(),tx.getMaximumPassenger()};
+				model.addRow(data);
+			}
+		}
+	}
+
+	public void addTableColumnHeader(String header) {
+		// TODO Auto-generated method stub
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
+		model.addColumn(header);
 	}
 
 }

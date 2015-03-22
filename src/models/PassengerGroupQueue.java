@@ -1,15 +1,19 @@
 package models;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Observable;
+import java.util.Vector;
 
 import entities.Destination;
 import entities.PassengerGroup;
-
+/**
+ * Singleton Class of PassengerGroup
+ * @author Wonchana
+ *
+ */
 public class PassengerGroupQueue extends Observable{
-	
-	private LinkedList<PassengerGroup> cList = new LinkedList<PassengerGroup>();
+	//Vector is synchronised data structure so only one thread can update vector at the time
+	private Vector<PassengerGroup> cList = new Vector<PassengerGroup>();
 	private static final PassengerGroupQueue INSTANCE = new PassengerGroupQueue();
 	
 	private PassengerGroupQueue() {}
@@ -35,14 +39,17 @@ public class PassengerGroupQueue extends Observable{
 			PassengerGroup pg = new PassengerGroup(destinations);
 			cList.add(pg);
 		}
+		setChanged();
+		notifyObservers(1);
+		
 	}
 	
 	public void addPassengerGroup(Collection<Destination> destinations) {
 		
 	}
 	
-	public PassengerGroup getPassengerGroup() {
-		return cList.poll();
+	public Vector<PassengerGroup> getPassengerGroup() {
+		return cList;
 	}
 
 }

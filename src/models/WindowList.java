@@ -13,15 +13,6 @@ public class WindowList {
 		windows.add(kw);
 	}
 	
-//	public KioskWindow find(int id) {
-//		for (KioskWindow kw : windows) {
-//			if (kw.getId() == id){
-//				return kw;
-//			}
-//		}
-//		return null;
-//	}
-	
 	public KioskWindow get(int i) {
 		return windows.get(i);
 	}

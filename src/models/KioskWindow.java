@@ -13,7 +13,6 @@ public class KioskWindow extends Observable implements Runnable {
 
 	@Override
 	public void run() {
-		PassengerGroup pg = pgq.getPassengerGroup();
 		//Taxi t = tq.getTaxi();
 	}
 
