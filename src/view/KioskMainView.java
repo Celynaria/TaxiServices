@@ -12,6 +12,7 @@ public class KioskMainView extends JFrame{
 	
 	public KioskMainView (){
 		
+		setResizable(false);
 		setTitle("Kiosk Taxi");
 		//create 3 windows
 		KioskWindowView window1 = new KioskWindowView("WINDOW 1");

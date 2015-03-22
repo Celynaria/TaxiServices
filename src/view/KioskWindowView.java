@@ -4,6 +4,7 @@ import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
@@ -16,6 +17,7 @@ public class KioskWindowView extends JPanel implements Observer{
 	private JLabel passengers = new JLabel();
 	private JLabel taxi = new JLabel();
 	private JLabel header = new JLabel();
+	private JButton pause = new JButton("PAUSE");
 	
 	public KioskWindowView(String title) {
 		
@@ -37,6 +39,7 @@ public class KioskWindowView extends JPanel implements Observer{
 							.addComponent(j2,GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
 							.addComponent(j3,GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
 							.addComponent(j4,GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+							.addComponent(pause)
 						)
 				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 							.addComponent(this.windowStatus)
@@ -67,6 +70,10 @@ public class KioskWindowView extends JPanel implements Observer{
 						.addComponent(j4)
 						.addComponent(this.taxi)
 						)
+				.addGroup(
+						layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addComponent(pause)
+				)
 		);
 
 	}
@@ -114,6 +121,14 @@ public class KioskWindowView extends JPanel implements Observer{
 
 	public void setHeader(JLabel header) {
 		this.header = header;
+	}
+
+	public JButton getPause() {
+		return pause;
+	}
+
+	public void setPause(JButton pause) {
+		this.pause = pause;
 	}
 
 }

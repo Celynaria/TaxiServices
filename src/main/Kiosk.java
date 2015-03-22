@@ -3,6 +3,7 @@ package main;
 import java.util.Observable;
 import java.util.Observer;
 
+import models.KioskWindow;
 import models.PassengerGroupQueue;
 import models.TaxiQueue;
 
@@ -23,9 +24,13 @@ public class Kiosk implements Observer {
 	}
 	
 	public void start(){
-//		KioskWindow window1 = new KioskWindow();
-//		KioskWindow window2 = new KioskWindow();
-//		KioskWindow window3 = new KioskWindow();
+		
+		KioskWindow window1 = new KioskWindow();
+		new Thread(window1).start();
+		KioskWindow window2 = new KioskWindow();
+		new Thread(window2).start();
+		KioskWindow window3 = new KioskWindow();
+		new Thread(window3).start();
 	}
 
 }
