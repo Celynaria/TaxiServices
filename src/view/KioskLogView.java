@@ -59,11 +59,15 @@ public class KioskLogView extends JPanel implements Observer{
 	public void setTitle(JLabel title) {
 		this.title = title;
 	}
+	
+	public synchronized void appendLog(String text){
+		tx.append(text);
+		tx.append("\n");
+	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

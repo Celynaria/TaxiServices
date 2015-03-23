@@ -1,8 +1,8 @@
 package models;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Observable;
-import java.util.Vector;
 
 import entities.Destination;
 import entities.PassengerGroup;
@@ -12,8 +12,7 @@ import entities.PassengerGroup;
  *
  */
 public class PassengerGroupQueue extends Observable{
-	//Vector is synchronised data structure so only one thread can update vector at the time
-	private Vector<PassengerGroup> cList = new Vector<PassengerGroup>();
+	private LinkedList<PassengerGroup> cList = new LinkedList<PassengerGroup>();
 	private static final PassengerGroupQueue INSTANCE = new PassengerGroupQueue();
 	
 	private PassengerGroupQueue() {}
@@ -48,8 +47,15 @@ public class PassengerGroupQueue extends Observable{
 		
 	}
 	
-	public Vector<PassengerGroup> getPassengerGroup() {
+	public LinkedList<PassengerGroup> getPassengerGroup() {
 		return cList;
+	}
+	
+	public PassengerGroup getNextGroup(){
+		PassengerGroup pg = cList.poll();
+		setChanged();
+		notifyObservers(1);
+		return pg;
 	}
 
 }

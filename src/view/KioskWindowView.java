@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import entities.Window;
+
 @SuppressWarnings("serial")
 public class KioskWindowView extends JPanel implements Observer{
 	
@@ -80,7 +82,11 @@ public class KioskWindowView extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		Window win = (Window)arg;
+		windowStatus.setText(Integer.toString(win.getProcessingTime()));
+		destination.setText(win.getDestination());
+		passengers.setText(Integer.toString(win.getPassengers()));
+		taxi.setText(win.getTaxiID());
 	}
 	
 	public JLabel getWindowStatus() {

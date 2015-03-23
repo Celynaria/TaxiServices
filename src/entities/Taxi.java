@@ -37,7 +37,7 @@ public class Taxi {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		Random ran = new Random();
-		int x = ran.nextInt(6) + 3;
+		int x = ran.nextInt(3) + 3;
 		this.setMaximumPassenger(x);
 	}
 	public Taxi(){}

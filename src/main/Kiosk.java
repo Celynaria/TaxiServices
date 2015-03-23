@@ -1,56 +1,43 @@
 package main;
 
-import java.awt.Component;
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
-
+import view.KioskMainView;
 import entities.Destination;
 import entities.Taxi;
+import models.KioskWindowList;
 import models.PassengerGroupQueue;
 import models.TaxiQueue;
 
-public class Kiosk implements Observer {
+/**
+ * This is main controller class
+ * @author Wonchana
+ *
+ */
+public class Kiosk {
 	
 	private PassengerGroupQueue passengerGroupQueue = PassengerGroupQueue.getInstance();
 	private TaxiQueue taxiQueue = TaxiQueue.getInstance();
-	private HashMap<String,Observer> componentList = new HashMap<String,Observer>();
-	private boolean finished = false;
-
-	public boolean isFinished() {
-		return finished;
-	}
+	private KioskWindowList winList = KioskWindowList.getInstance();
 
 	public void init(){
+		//init view
+		KioskMainView views = new KioskMainView(winList);
+		views.setVisible(true);
 		//add observer
-		passengerGroupQueue.addObserver(componentList.get("passengerQueue"));
-		taxiQueue.addObserver(componentList.get("taxiQueue"));
+		passengerGroupQueue.addObserver(winList.getComponentList().get("passengerQueue"));
+		taxiQueue.addObserver(winList.getComponentList().get("taxiQueue"));
 		//init data
 		passengerGroupQueue.setPassengerGroup(Destination.read().values(),10);
 		taxiQueue.setTaxiList(Taxi.read().values());
 	}
-	public void start(){
-
-//		KioskWindow window1 = new KioskWindow();
-//		new Thread(window1).start();
-//		KioskWindow window2 = new KioskWindow();
-//		new Thread(window2).start();
-//		KioskWindow window3 = new KioskWindow();
-//		new Thread(window3).start();
-	}
-	
-	public HashMap<String, Observer> getComponentList() {
-		return componentList;
-	}
-
-	public void setComponentList(HashMap<String, Observer> componentList) {
-		this.componentList = componentList;
-	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-//		this.next((int)arg1);
+	public void start(){ 
+		Thread win1 = new Thread(new KioskWindowsWorker("window1"));
+		Thread win2 = new Thread(new KioskWindowsWorker("window2"));
+		Thread win3 = new Thread(new KioskWindowsWorker("window3"));
+		
+		win1.start();
+		win2.start();
+		win3.start();
+		
 	}
 
 }

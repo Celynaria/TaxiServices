@@ -102,6 +102,7 @@ public class KioskListView extends JPanel implements Observer{
 		// TODO Auto-generated method stub
 		if((int)arg == 1){
 			DefaultTableModel model = (DefaultTableModel)table.getModel();
+			model.setRowCount(0);
 			Iterator<PassengerGroup> i = PassengerGroupQueue.getInstance().getPassengerGroup().iterator();
 			while(i.hasNext()){
 				PassengerGroup pg = i.next();
@@ -110,6 +111,7 @@ public class KioskListView extends JPanel implements Observer{
 			}
 		}else if((int)arg == 2){
 			DefaultTableModel model = (DefaultTableModel)table.getModel();
+			model.setRowCount(0);
 			Iterator<Taxi> i = TaxiQueue.getInstance().getTaxiList().iterator();
 			while(i.hasNext()){
 				Taxi tx = i.next();

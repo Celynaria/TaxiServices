@@ -1,14 +1,14 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Observable;
-import java.util.Vector;
 
 import entities.Taxi;
 
 public class TaxiQueue extends Observable{
-	//Vector is synchronised data structure so only one thread can update vector at the time
-	private Vector<Taxi> taxiList = new Vector<Taxi>();
+	private ArrayList<Taxi> taxiList = new ArrayList<Taxi>();
 	private static final TaxiQueue INSTANCE = new TaxiQueue();
 	
 	private TaxiQueue() {}
@@ -17,7 +17,7 @@ public class TaxiQueue extends Observable{
 		return INSTANCE;
 	}
 
-	public Vector<Taxi> getTaxiList() {
+	public ArrayList<Taxi> getTaxiList() {
 		return taxiList;
 	}
 	/**
@@ -29,6 +29,26 @@ public class TaxiQueue extends Observable{
 		this.taxiList.addAll(tList);
 		setChanged();
 		notifyObservers(2);
+	}
+
+	/**
+	 * Get taxi that big enough for specified number of passengers
+	 * @param passengers
+	 * @return null if no taxi matched the condition
+	 */
+	public Taxi getAvailableTaxi(int passengers) {
+		Iterator<Taxi> iterator = taxiList.iterator();
+		Boolean flag = true;
+		Taxi taxi = null;
+		while(iterator.hasNext()&&flag){
+			Taxi tx = iterator.next();
+			if(tx.getMaximumPassenger()>= passengers){
+				taxi = tx;
+				iterator.remove();
+				flag = false;
+			}
+		}
+		return taxi;
 	}
 	
 }

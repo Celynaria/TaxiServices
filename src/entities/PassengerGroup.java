@@ -14,7 +14,7 @@ public class PassengerGroup {
 		ArrayList<Destination> array = new ArrayList<Destination>(destinations);
 		int size = array.size();
 		Random ran = new Random();
-		this.passengers = ran.nextInt(6) + 1;
+		this.passengers = ran.nextInt(5) + 1;
 		this.destination = array.get(ran.nextInt(size)).getName();
 	}
 	

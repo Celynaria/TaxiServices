@@ -8,12 +8,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import main.Kiosk;
+import models.KioskWindowList;
 
 @SuppressWarnings("serial")
 public class KioskMainView extends JFrame{
 	
-	public KioskMainView (Kiosk kios){
+	public KioskMainView (KioskWindowList viewList){
 		setResizable(false);
 		setTitle("Kiosk Taxi");
 		//create 3 windows
@@ -39,12 +39,12 @@ public class KioskMainView extends JFrame{
 		KioskLogView log = new KioskLogView();
 		
 		//add list of component to main controller
-		kios.getComponentList().put("window1", window1);
-		kios.getComponentList().put("window2", window2);
-		kios.getComponentList().put("window3", window3);
-		kios.getComponentList().put("taxiQueue", taxiQueue);
-		kios.getComponentList().put("passengerQueue", passengerQueue);
-		kios.getComponentList().put("log", log);
+		viewList.getComponentList().put("window1", window1);
+		viewList.getComponentList().put("window2", window2);
+		viewList.getComponentList().put("window3", window3);
+		viewList.getComponentList().put("taxiQueue", taxiQueue);
+		viewList.getComponentList().put("passengerQueue", passengerQueue);
+		viewList.getComponentList().put("log", log);
 		
 		//create north panel
 		JPanel northPanel = new JPanel();
