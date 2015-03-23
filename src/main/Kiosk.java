@@ -1,6 +1,11 @@
 package main;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import view.KioskListView;
 import view.KioskMainView;
+import view.KioskWindowView;
 import entities.Destination;
 import entities.Taxi;
 import models.KioskWindowList;
@@ -12,7 +17,7 @@ import models.TaxiQueue;
  * @author Wonchana
  *
  */
-public class Kiosk {
+public class Kiosk implements ActionListener{
 	
 	private PassengerGroupQueue passengerGroupQueue = PassengerGroupQueue.getInstance();
 	private TaxiQueue taxiQueue = TaxiQueue.getInstance();
@@ -21,7 +26,11 @@ public class Kiosk {
 	public void init(){
 		//init view
 		KioskMainView views = new KioskMainView(winList);
-		views.setVisible(true);
+		((KioskWindowView)winList.getComponentList().get("window1")).addActionListener(this,"winp1");
+		((KioskWindowView)winList.getComponentList().get("window2")).addActionListener(this,"winp2");
+		((KioskWindowView)winList.getComponentList().get("window3")).addActionListener(this,"winp3");
+		((KioskListView)winList.getComponentList().get("passengerQueue")).addActionListener(this);
+		((KioskListView)winList.getComponentList().get("taxiQueue")).setButtonEnable(false);
 		//add observer
 		passengerGroupQueue.addObserver(winList.getComponentList().get("passengerQueue"));
 		taxiQueue.addObserver(winList.getComponentList().get("taxiQueue"));
@@ -37,6 +46,20 @@ public class Kiosk {
 		win1.start();
 		win2.start();
 		win3.start();
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg) {
+		
+		if(arg.getActionCommand().equals("winp1")){
+			
+		}else if(arg.getActionCommand().equals("winp2")){
+			
+		}else if(arg.getActionCommand().equals("winp3")){
+			
+		}else if(arg.getActionCommand().equals("Add Passenger")){
+			
+		}
 		
 	}
 

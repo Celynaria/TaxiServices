@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,7 +30,7 @@ public class KioskListView extends JPanel implements Observer{
 		
 	private	JLabel title = new JLabel();
 	private	JLabel number = new JLabel();
-	private	JButton process = new JButton();
+	private	JButton add = new JButton();
 	private JTable table = new JTable(new DefaultTableModel(0,0));
 	
 	/**
@@ -54,7 +55,7 @@ public class KioskListView extends JPanel implements Observer{
 							.addComponent(number)
 					)
 					.addComponent(scrollPane,400,400,400)
-					.addComponent(process, GroupLayout.Alignment.CENTER)
+					.addComponent(add, GroupLayout.Alignment.CENTER)
 			)
 		);
 		layout.setVerticalGroup(
@@ -65,7 +66,7 @@ public class KioskListView extends JPanel implements Observer{
 					.addComponent(number)
 			)
 			.addComponent(scrollPane,125,125,125)
-			.addComponent(process)	
+			.addComponent(add)	
 		);
 	}
 	
@@ -90,11 +91,15 @@ public class KioskListView extends JPanel implements Observer{
 	 * @param name
 	 */
 	public void setButtonLabel(String name){
-		this.process.setText(name);
+		this.add.setText(name);
 	}
 	
-	public void addRow(){
-		
+	public void setButtonEnable(Boolean boo){
+		add.setEnabled(boo);
+	}
+	
+	public void addActionListener(ActionListener arg){
+		add.addActionListener(arg);
 	}
 
 	@Override

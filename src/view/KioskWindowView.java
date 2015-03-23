@@ -1,4 +1,5 @@
 package view;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -78,6 +79,11 @@ public class KioskWindowView extends JPanel implements Observer{
 				)
 		);
 
+	}
+	
+	public void addActionListener(ActionListener arg,String actionCommand){
+		pause.setActionCommand(actionCommand);
+		pause.addActionListener(arg);
 	}
 
 	@Override

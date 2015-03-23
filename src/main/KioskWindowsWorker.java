@@ -15,13 +15,9 @@ public class KioskWindowsWorker extends Observable implements Runnable{
 	private KioskWindowList winList = KioskWindowList.getInstance();
 	private TaxiQueue txq = TaxiQueue.getInstance();
 	private PassengerGroupQueue pgq = PassengerGroupQueue.getInstance();
-	private static final KioskWindowsWorker INSTANCE = new KioskWindowsWorker();
 	private String windowNum;
 	
 	public KioskWindowsWorker(){}
-	public static KioskWindowsWorker getInstance() {
-		return INSTANCE;
-	}
 	
 	public KioskWindowsWorker(String windowNum) {
 		this.windowNum = windowNum;
