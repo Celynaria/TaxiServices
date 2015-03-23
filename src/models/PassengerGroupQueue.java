@@ -32,7 +32,7 @@ public class PassengerGroupQueue extends Observable{
 	 * @param numberOfGroup
 	 * number of groups that will be generated
 	 */
-	public void setPassengerGroup(Collection<Destination> destinations,int numberOfGroup){
+	public synchronized void setPassengerGroup(Collection<Destination> destinations,int numberOfGroup){
 		
 		for(int i=0;i<numberOfGroup;i++){
 			PassengerGroup pg = new PassengerGroup(destinations);
@@ -43,15 +43,11 @@ public class PassengerGroupQueue extends Observable{
 		
 	}
 	
-	public void addPassengerGroup(Collection<Destination> destinations) {
-		
-	}
-	
-	public LinkedList<PassengerGroup> getPassengerGroup() {
+	public synchronized LinkedList<PassengerGroup> getPassengerGroup() {
 		return cList;
 	}
 	
-	public PassengerGroup getNextGroup(){
+	public synchronized PassengerGroup getNextGroup(){
 		PassengerGroup pg = cList.poll();
 		setChanged();
 		notifyObservers(1);

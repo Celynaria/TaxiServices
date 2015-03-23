@@ -2,6 +2,9 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import view.KioskListView;
 import view.KioskMainView;
@@ -22,6 +25,8 @@ public class Kiosk implements ActionListener{
 	private PassengerGroupQueue passengerGroupQueue = PassengerGroupQueue.getInstance();
 	private TaxiQueue taxiQueue = TaxiQueue.getInstance();
 	private KioskWindowList winList = KioskWindowList.getInstance();
+	private ArrayList<KioskWindowsWorker> workerGroup = new ArrayList<KioskWindowsWorker>();
+	private Collection<Destination> destinationList;
 
 	public void init(){
 		//init view
@@ -35,14 +40,19 @@ public class Kiosk implements ActionListener{
 		passengerGroupQueue.addObserver(winList.getComponentList().get("passengerQueue"));
 		taxiQueue.addObserver(winList.getComponentList().get("taxiQueue"));
 		//init data
-		passengerGroupQueue.setPassengerGroup(Destination.read().values(),10);
+		destinationList = Destination.read().values();
+		passengerGroupQueue.setPassengerGroup(destinationList,10);
 		taxiQueue.setTaxiList(Taxi.read().values());
 	}
 	public void start(){ 
-		Thread win1 = new Thread(new KioskWindowsWorker("window1"));
-		Thread win2 = new Thread(new KioskWindowsWorker("window2"));
-		Thread win3 = new Thread(new KioskWindowsWorker("window3"));
+		KioskWindowsWorker worker1 = new KioskWindowsWorker("window1");
+		KioskWindowsWorker worker2 = new KioskWindowsWorker("window2");
+		KioskWindowsWorker worker3 = new KioskWindowsWorker("window3");
+		workerGroup.add(worker1);workerGroup.add(worker2);workerGroup.add(worker3);
 		
+		Thread win1 = new Thread(worker1);
+		Thread win2 = new Thread(worker2);
+		Thread win3 = new Thread(worker3);
 		win1.start();
 		win2.start();
 		win3.start();
@@ -52,13 +62,13 @@ public class Kiosk implements ActionListener{
 	public void actionPerformed(ActionEvent arg) {
 		
 		if(arg.getActionCommand().equals("winp1")){
-			
+			workerGroup.get(0).pauseThread(true);
 		}else if(arg.getActionCommand().equals("winp2")){
-			
+			workerGroup.get(1).pauseThread(true);
 		}else if(arg.getActionCommand().equals("winp3")){
-			
+			workerGroup.get(2).pauseThread(true);
 		}else if(arg.getActionCommand().equals("Add Passenger")){
-			
+			passengerGroupQueue.setPassengerGroup(destinationList,1);
 		}
 		
 	}

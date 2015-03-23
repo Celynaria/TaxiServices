@@ -16,6 +16,7 @@ public class KioskWindowsWorker extends Observable implements Runnable{
 	private TaxiQueue txq = TaxiQueue.getInstance();
 	private PassengerGroupQueue pgq = PassengerGroupQueue.getInstance();
 	private String windowNum;
+	private Boolean working = true;
 	
 	public KioskWindowsWorker(){}
 	
@@ -28,26 +29,28 @@ public class KioskWindowsWorker extends Observable implements Runnable{
 	public void run() {
 		
 		Window win = null;
-		do{
-			appendLog(windowNum+" Requesting next task");
-			win = getNextJob();
-			if(win!=null){
-				win.setWinNum(windowNum);
-				setChanged();
-				notifyObservers(win);
-			}else{
-				appendLog(windowNum+" cannot find next task");
-			}
-			try {
+		try {
+			do{
+				if(!working){
+					Thread.currentThread().wait();
+				}
+				appendLog(windowNum+" Requesting next task");
+				win = getNextJob();
+				if(win!=null){
+					win.setWinNum(windowNum);
+					setChanged();
+					notifyObservers(win);
+				}else{
+					appendLog(windowNum+" cannot find next task");
+				}
 				appendLog(win.toString());
 				Thread.sleep(win.getProcessingTime()*1000);
 				appendLog(windowNum+" Processing Complete");
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}while(win!=null);
-		
+			}while(win!=null);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private synchronized Window getNextJob() {
@@ -64,6 +67,9 @@ public class KioskWindowsWorker extends Observable implements Runnable{
 	private synchronized void appendLog(String text) {
 		KioskLogView log = (KioskLogView) winList.getComponentList().get("log");
 		log.appendLog(text);
+	}
+	public synchronized void pauseThread(Boolean boo){
+		working = boo;
 	}
 
 }
