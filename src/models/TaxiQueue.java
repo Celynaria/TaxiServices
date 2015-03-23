@@ -36,7 +36,7 @@ public class TaxiQueue extends Observable{
 	 * @param passengers
 	 * @return null if no taxi matched the condition
 	 */
-	public Taxi getAvailableTaxi(int passengers) {
+	public synchronized Taxi getAvailableTaxi(int passengers) {
 		Iterator<Taxi> iterator = taxiList.iterator();
 		Boolean flag = true;
 		Taxi taxi = null;
@@ -46,9 +46,27 @@ public class TaxiQueue extends Observable{
 				taxi = tx;
 				iterator.remove();
 				flag = false;
+				setChanged();
+				notifyObservers(2);
 			}
 		}
 		return taxi;
+	}
+	
+	public synchronized boolean hasNext(int passengers){
+		Iterator<Taxi> iterator = taxiList.iterator();
+		Boolean flag = true;
+		while(iterator.hasNext()&&flag){
+			Taxi tx = iterator.next();
+			if(tx.getMaximumPassenger()>= passengers){
+				flag = false;
+			}
+		}
+		return !flag;
+	}
+	
+	public synchronized boolean hasNext(){
+		return !taxiList.isEmpty();
 	}
 	
 }

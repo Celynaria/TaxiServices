@@ -2,7 +2,6 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -70,7 +69,6 @@ public class Kiosk implements ActionListener{
 		}else if(arg.getActionCommand().equals("Add Passenger")){
 			passengerGroupQueue.setPassengerGroup(destinationList,1);
 		}
-		
 	}
 
 }

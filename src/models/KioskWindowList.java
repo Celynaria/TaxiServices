@@ -2,6 +2,11 @@ package models;
 
 import java.util.HashMap;
 import java.util.Observer;
+import java.util.Random;
+
+import entities.PassengerGroup;
+import entities.Taxi;
+import entities.Window;
 
 public class KioskWindowList {
 	private HashMap<String,Observer> componentList = new HashMap<String,Observer>();
@@ -17,5 +22,30 @@ public class KioskWindowList {
 	}
 	public static KioskWindowList getInstance() {
 		return INSTANCE;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public synchronized Window getNextJob() {
+		
+		PassengerGroupQueue pgq = PassengerGroupQueue.getInstance();
+		TaxiQueue txq = TaxiQueue.getInstance();
+		Window win = null;
+		Taxi tx = null;
+		PassengerGroup pg = null;
+		if(pgq.hasNext()){
+			pg = pgq.getNextGroup();
+			if(txq.hasNext(pg.getPassengers())){
+				tx = txq.getAvailableTaxi(pg.getPassengers());
+				Random ran = new Random();
+				int x = ran.nextInt(6) + 4;//random processing time for each job
+				if(tx!=null&&pg!=null){
+					win = new Window(x, pg.getDestination(), pg.getPassengers(), tx.getRegistrationID(), tx.getMaximumPassenger());
+				}
+			}
+		}
+		return win;
 	}
 }

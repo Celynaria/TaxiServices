@@ -47,6 +47,10 @@ public class PassengerGroupQueue extends Observable{
 		return cList;
 	}
 	
+	public synchronized boolean hasNext(){
+		return !cList.isEmpty();
+	}
+	
 	public synchronized PassengerGroup getNextGroup(){
 		PassengerGroup pg = cList.poll();
 		setChanged();

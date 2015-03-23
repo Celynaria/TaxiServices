@@ -1,17 +1,17 @@
 package main;
 
 import java.util.Observable;
-import java.util.Random;
 
 import models.KioskWindowList;
 import models.PassengerGroupQueue;
 import models.TaxiQueue;
+
 import view.KioskLogView;
-import entities.PassengerGroup;
-import entities.Taxi;
+
 import entities.Window;
 
 public class KioskWindowsWorker extends Observable implements Runnable{
+	
 	private KioskWindowList winList = KioskWindowList.getInstance();
 	private TaxiQueue txq = TaxiQueue.getInstance();
 	private PassengerGroupQueue pgq = PassengerGroupQueue.getInstance();
@@ -53,22 +53,14 @@ public class KioskWindowsWorker extends Observable implements Runnable{
 		}
 	}
 	
-	private synchronized Window getNextJob() {
-		PassengerGroup pg = pgq.getNextGroup();
-		Window win = null;
-		Taxi tx = txq.getAvailableTaxi(pg.getPassengers());
-		Random ran = new Random();
-		int x = ran.nextInt(2) + 4;
-		if(tx!=null&&pg!=null){
-			win = new Window(x, pg.getDestination(), pg.getPassengers(), tx.getRegistrationID(), tx.getMaximumPassenger());
-		}
-		return win;
+	private Window getNextJob() {
+		return winList.getNextJob();
 	}
-	private synchronized void appendLog(String text) {
+	private void appendLog(String text) {
 		KioskLogView log = (KioskLogView) winList.getComponentList().get("log");
 		log.appendLog(text);
 	}
-	public synchronized void pauseThread(Boolean boo){
+	public void pauseThread(Boolean boo){
 		working = boo;
 	}
 

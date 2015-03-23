@@ -89,7 +89,7 @@ public class KioskWindowView extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		Window win = (Window)arg;
-		windowStatus.setText(Integer.toString(win.getProcessingTime()));
+		windowStatus.setText("Processing Time "+Integer.toString(win.getProcessingTime())+" Secs");
 		destination.setText(win.getDestination());
 		passengers.setText(Integer.toString(win.getPassengers()));
 		taxi.setText(win.getTaxiID());
