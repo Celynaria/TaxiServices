@@ -15,9 +15,9 @@ import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
-import entities.PassengerGroup;
-import entities.Taxi;
+import models.PassengerGroup;
 import models.PassengerGroupQueue;
+import models.Taxi;
 import models.TaxiQueue;
 
 /**

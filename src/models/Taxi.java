@@ -1,4 +1,4 @@
-package entities;
+package models;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -37,7 +37,7 @@ public class Taxi {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		Random ran = new Random();
-		int x = ran.nextInt(3) + 3;
+		int x = ran.nextInt(3) + 4;
 		this.setMaximumPassenger(x);
 	}
 	public Taxi(){}
@@ -74,7 +74,7 @@ public class Taxi {
 	 * @return taxis
 	 */
 	public static Map<String, Taxi> read(){
-		String fileName = ".\\taxi.txt";
+		String fileName = "taxi.txt";
 		String line = new String();
 		Map<String, Taxi> taxis = new HashMap<String, Taxi>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(fileName));)

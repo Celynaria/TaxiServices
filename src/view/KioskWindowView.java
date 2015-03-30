@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
-import entities.Window;
+import models.Window;
 
 @SuppressWarnings("serial")
 public class KioskWindowView extends JPanel implements Observer{
@@ -20,7 +20,7 @@ public class KioskWindowView extends JPanel implements Observer{
 	private JLabel passengers = new JLabel();
 	private JLabel taxi = new JLabel();
 	private JLabel header = new JLabel();
-	private JButton pause = new JButton("PAUSE");
+	private JButton pause = new JButton("Pause");
 	
 	public KioskWindowView(String title) {
 		
@@ -89,10 +89,27 @@ public class KioskWindowView extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		Window win = (Window)arg;
-		windowStatus.setText("Processing Time "+Integer.toString(win.getProcessingTime())+" Secs");
-		destination.setText(win.getDestination());
-		passengers.setText(Integer.toString(win.getPassengers()));
-		taxi.setText(win.getTaxiID());
+		if(win.getProcessingTime() == -1){
+			pause.setText("Resume");
+			pause.setEnabled(true);
+			windowStatus.setText("Break time");
+			destination.setText("");
+			passengers.setText("");
+			taxi.setText("");
+		}else if(win.getProcessingTime() == -2){
+			pause.setEnabled(false);
+			windowStatus.setText("Closed");
+			destination.setText("");
+			passengers.setText("");
+			taxi.setText("");
+		}else{
+			pause.setText("Pause");
+			pause.setEnabled(true);
+			windowStatus.setText("Processing Time "+Integer.toString(win.getProcessingTime())+" Secs");
+			destination.setText(win.getDestination());
+			passengers.setText(Integer.toString(win.getPassengers()));
+			taxi.setText(win.getTaxiID());
+		}
 	}
 	
 	public JLabel getWindowStatus() {

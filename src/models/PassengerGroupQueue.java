@@ -3,9 +3,6 @@ package models;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Observable;
-
-import entities.Destination;
-import entities.PassengerGroup;
 /**
  * Singleton Class of PassengerGroup
  * @author Wonchana
@@ -56,6 +53,10 @@ public class PassengerGroupQueue extends Observable{
 		setChanged();
 		notifyObservers(1);
 		return pg;
+	}
+	
+	public synchronized int getFirstPassengerGroupSize(){
+		return cList.getFirst().getPassengers();
 	}
 
 }

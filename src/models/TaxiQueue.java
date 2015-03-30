@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Observable;
 
-import entities.Taxi;
-
 public class TaxiQueue extends Observable{
 	private ArrayList<Taxi> taxiList = new ArrayList<Taxi>();
 	private static final TaxiQueue INSTANCE = new TaxiQueue();

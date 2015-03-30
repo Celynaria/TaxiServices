@@ -1,4 +1,4 @@
-package entities;
+package models;
 
 public class Window {
 	private String winNum;
@@ -54,7 +54,7 @@ public class Window {
 		this.taxiCap = taxiCap;
 	}
 	public String toString(){
-		return winNum+"Processing:[Destination: "+destination+", Number of passengers: "+passengers+", Taxi: "+taxiID +", Taxi's capacity: "+taxiCap+"]";
+		return winNum+" Processing:[Destination: "+destination+", Number of passengers: "+passengers+", Taxi: "+taxiID +", Taxi's capacity: "+taxiCap+"]";
 	}
 	
 	

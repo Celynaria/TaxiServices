@@ -1,0 +1,40 @@
+window3 Requesting next task
+window2 Requesting next task
+window1 Requesting next task
+window3 Processing:[Destination: Kanchanaburi, Number of passengers: 2, Taxi: BKKAA011, Taxi's capacity: 6]
+window1 Processing:[Destination: Kao-san road, Number of passengers: 2, Taxi: BKKAA012, Taxi's capacity: 4]
+window2 Processing:[Destination: River Kwai, Number of passengers: 2, Taxi: BKKAA001, Taxi's capacity: 4]
+window1 Processing Complete
+window1 Requesting next task
+window1 Processing:[Destination: Dream World, Number of passengers: 3, Taxi: BKKAA010, Taxi's capacity: 6]
+window2 Processing Complete
+window2 Requesting next task
+window2 Processing:[Destination: Bangkhen, Number of passengers: 5, Taxi: BKKAA008, Taxi's capacity: 5]
+window3 Processing Complete
+window3 Requesting next task
+window3 Processing:[Destination: Bangkhen, Number of passengers: 3, Taxi: BKKAA009, Taxi's capacity: 6]
+window2 Processing Complete
+window2 Requesting next task
+window2 Processing:[Destination: Floating Market, Number of passengers: 1, Taxi: BKKAA006, Taxi's capacity: 4]
+window1 Processing Complete
+window1 Requesting next task
+window1 Processing:[Destination: Pattaya, Number of passengers: 2, Taxi: BKKAA007, Taxi's capacity: 6]
+window3 Processing Complete
+window3 Requesting next task
+window3 Processing:[Destination: Central World, Number of passengers: 5, Taxi: BKKAA004, Taxi's capacity: 5]
+window2 Processing Complete
+window2 Requesting next task
+window2 Processing:[Destination: Ayuthaya, Number of passengers: 3, Taxi: BKKAA015, Taxi's capacity: 4]
+window1 Processing Complete
+window1 Requesting next task
+window1 cannot find next task
+window1 is now closed
+window3 Processing Complete
+window3 Requesting next task
+window3 cannot find next task
+window3 is now closed
+window2 Processing Complete
+window2 Requesting next task
+window2 cannot find next task
+window2 is now closed
+All threads are finished, Application is closed

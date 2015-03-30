@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.Observer;
 import java.util.Random;
 
-import entities.PassengerGroup;
-import entities.Taxi;
-import entities.Window;
-
 public class KioskWindowList {
 	private HashMap<String,Observer> componentList = new HashMap<String,Observer>();
 	private static final KioskWindowList INSTANCE = new KioskWindowList();
@@ -36,8 +32,8 @@ public class KioskWindowList {
 		Taxi tx = null;
 		PassengerGroup pg = null;
 		if(pgq.hasNext()){
-			pg = pgq.getNextGroup();
-			if(txq.hasNext(pg.getPassengers())){
+			if(txq.hasNext(pgq.getFirstPassengerGroupSize())){
+				pg = pgq.getNextGroup();
 				tx = txq.getAvailableTaxi(pg.getPassengers());
 				Random ran = new Random();
 				int x = ran.nextInt(6) + 4;//random processing time for each job
